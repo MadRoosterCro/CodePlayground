@@ -47,7 +47,7 @@ export const Preview: React.FC<PreviewProps> = ({ code, err }) => {
     }, 50);
   }, [code]);
 
-  console.log(err);
+  console.error(err);
 
   return (
     <div className="preview-wrapper">
