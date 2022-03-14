@@ -403,3 +403,5 @@ Supported via the `markdown-it-checkbox` plugin. This allows to create checkboxe
 ---
 
 ##### Done.
+Currently I'm balacing 3 big projects plus this so please bear with me here lol
+
