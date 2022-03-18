@@ -1,3 +1,4 @@
+import './code-cell.css';
 import { useEffect } from 'react';
 import { CodeEditor } from './code-editor';
 import { Preview } from './preview';
@@ -13,6 +14,7 @@ interface CodeCellProps {
 export const CodeCell: React.FC<CodeCellProps> = ({ cell }) => {
   const { updateCell, createBundle } = useActions();
   const bundle = useTypedSelector((state) => state.bundles[cell.id]);
+
   // create debouncer for code bundling
   useEffect(() => {
     if (!bundle) {
@@ -44,7 +46,15 @@ export const CodeCell: React.FC<CodeCellProps> = ({ cell }) => {
             onChange={(value) => updateCell(cell.id, value)}
           />
         </Resizable>
-        {bundle && <Preview code={bundle.code} err={bundle.error} />}
+        {!bundle || bundle.loading ? (
+          <div className="proggres-cover">
+            <progress className="progress is-small is-primary" max={'100'}>
+              Loading
+            </progress>
+          </div>
+        ) : (
+          <Preview code={bundle.code} err={bundle.error} />
+        )}
       </div>
     </Resizable>
   );
