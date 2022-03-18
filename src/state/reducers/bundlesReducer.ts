@@ -26,13 +26,14 @@ const reducer = produce(
         state[action.payload.cellId] = {
           loading: false,
           code: action.payload.bundle.code,
-          error: action.payload.bundle.error,
+          error: action.payload.bundle.err,
         };
         return state;
       default:
         return state;
     }
-  }
+  },
+  initialState
 );
 
 export default reducer;
