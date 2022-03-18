@@ -46,15 +46,17 @@ export const CodeCell: React.FC<CodeCellProps> = ({ cell }) => {
             onChange={(value) => updateCell(cell.id, value)}
           />
         </Resizable>
-        {!bundle || bundle.loading ? (
-          <div className="proggres-cover">
-            <progress className="progress is-small is-primary" max={'100'}>
-              Loading
-            </progress>
-          </div>
-        ) : (
-          <Preview code={bundle.code} err={bundle.error} />
-        )}
+        <div className="proggres-wrapper">
+          {!bundle || bundle.loading ? (
+            <div className="proggres-cover">
+              <progress className="progress is-small is-primary" max={'100'}>
+                Loading
+              </progress>
+            </div>
+          ) : (
+            <Preview code={bundle.code} err={bundle.error} />
+          )}
+        </div>
       </div>
     </Resizable>
   );
