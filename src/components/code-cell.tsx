@@ -30,22 +30,22 @@ export const CodeCell: React.FC<CodeCellProps> = ({ cell }) => {
     return cumulativeCode;
   });
   console.log(cumulativeCode);
-  
+
   // create debouncer for code bundling
   useEffect(() => {
     if (!bundle) {
-      createBundle(cell.id, cell.content);
+      createBundle(cell.id, cumulativeCode.join('\n'));
       return;
     }
     const timer = setTimeout(async () => {
-      createBundle(cell.id, cell.content);
+      createBundle(cell.id, cumulativeCode.join('\n'));
     }, 1000);
 
     return () => {
       clearTimeout(timer);
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [cell.content, cell.id, createBundle]);
+  }, [cumulativeCode.join('\n'), cell.id, createBundle]);
 
   return (
     <Resizable direction="vertical">
